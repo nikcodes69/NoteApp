@@ -23,7 +23,6 @@ function App() {
           <Routes>
             <Route path="/" element={appElements} />
             <Route path="/note/:noteId" element={<NotePage />} />
-       
           </Routes>
           </div>
           </div>

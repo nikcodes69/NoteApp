@@ -1,7 +1,7 @@
 import React from 'react'
 import ListItem from '../components/ListItem'
-import { useState } from 'react'
-import { useEffect } from 'react'
+import { useState,useEffect } from 'react'
+import AddBtn from '../components/AddBtn'
 
 const NotesListPage = () => {
 
@@ -23,7 +23,7 @@ const NotesListPage = () => {
             } catch (error) {
               console.error("Failed to fetch notes:", error);
             }
-        };
+        };        
 
   return (
     <div className="notes">
@@ -38,6 +38,7 @@ const NotesListPage = () => {
             <p className="no-notes">No notes found. Create your first note!</p>
           )}
         </div>
+        <AddBtn/>
     </div> 
   )
 }
