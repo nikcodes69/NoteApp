@@ -5,6 +5,12 @@ import AddBtn from '../components/AddBtn'
 
 const NotesListPage = () => {
 
+  const apiUrl = import.meta.env.REACT_APP_API_URL||'http://localhost:10000/notes';
+
+  fetch(`${apiUrl}`)
+    .then(res => res.json())
+    .then(data => console.log(data));
+
     let [notes,setNotes] = useState([]);
 
     useEffect(()=>{
@@ -14,7 +20,7 @@ const NotesListPage = () => {
 
     let getNotes =async()=>{
             try {
-              let response = await fetch("http://localhost:8000/notes");
+              let response = await fetch(`${apiUrl}`);
               if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
               }

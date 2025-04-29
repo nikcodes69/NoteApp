@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom';
 
 const NotePage = () => {
 
+    const apiUrl = import.meta.env.REACT_APP_API_URL||'http://localhost:10000/notes';
+
     const navigate = useNavigate();
 
     let {noteId} = useParams();
@@ -22,7 +24,7 @@ const NotePage = () => {
 
       if(noteId === 'new')return;
 
-      let response = await fetch(`http://localhost:8000/notes/${noteId}`);
+      let response = await fetch(`${apiUrl}/${noteId}`);
       let data = await response.json();
       console.log(data);
       setNote(data);
@@ -30,7 +32,8 @@ const NotePage = () => {
 
     let createNote = async()=>{
       
-      await fetch(`http://localhost:8000/notes/`,{
+      await fetch(`${apiUrl}`,
+      {
         method: 'POST',
         headers:{
           'Content-Type':'application/json'
@@ -40,10 +43,9 @@ const NotePage = () => {
       navigate('/');
     }
 
-
     let updateNote = async()=>{
 
-      await fetch(`http://localhost:8000/notes/${noteId}`,{
+      await fetch(`${apiUrl}/${noteId}`,{
         method: 'PUT',
         headers:{
           'Content-Type':'application/json'
@@ -54,7 +56,7 @@ const NotePage = () => {
 
     let deleteNote = async()=>{
       
-      await fetch(`http://localhost:8000/notes/${noteId}`,{
+      await fetch(`${apiUrl}/${noteId}`,{
         method: 'DELETE',
         headers:{
           'Content-Type':'application/json'
